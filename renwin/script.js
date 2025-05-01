@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (telegramButton) {
         const telegramUsername = 'recrut55'; // Убедитесь, что это ваше имя пользователя
-        const telegramUrl = `https://t.me/${telegramUsername}`;
+        const telegramUrl = `https://t.me/tripX_bot`;
 
         telegramButton.addEventListener('click', () => {
             window.open(telegramUrl, '_blank'); // Открывает в новой вкладке
