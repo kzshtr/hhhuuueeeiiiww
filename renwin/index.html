@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Осторожно! Не тот портал!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scene">
+        <div class="container">
+            <!-- Добавляем класс float-item к элементам, которые будут "летать" -->
+            <div class="warning-icon float-item" style="--delay: 0.1s; --duration: 8s;">⚠️</div>
+            <h1 class="float-item" style="--delay: 0.3s; --duration: 10s;">ОСТОРОЖНО!!! ВАС НАЕБАЛИ!</h1>
+            <p class="subtitle float-item" style="--delay: 0.5s; --duration: 12s;">
+                Блядь, похоже, кто-то тупо спиздил контент. Оригинал обитает под ебаной кнопкой, а это просто его ебаная, нестабильная копия.
+            </p>
+            <div class="contact-info-wrapper float-item" style="--delay: 0.7s; --duration: 9s;">
+                 <p class="contact-info">
+                    Создатель этой ебаной хуйни:
+                    <br>
+                    <span class="telegram-nick">@recrut55</span>
+                </p>
+            </div>
+
+            <button id="telegramButton" class="telegram-button float-item" style="--delay: 0.9s; --duration: 7s;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                <span>Телепортация в Telegram</span>
+            </button>
+             <p class="footer-note float-item" style="--delay: 1.1s; --duration: 11s;">
+                Остерегайтесь подделок, доверяйте проверенным координатам.
+            </p>
+        </div>
+        <!-- Декоративные элементы для фона -->
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3"></div>
+        <div class="particle p4"></div>
+        <div class="particle p5"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

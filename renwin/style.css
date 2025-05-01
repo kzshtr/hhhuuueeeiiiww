@@ -1,0 +1,261 @@
+/* --- Базовые стили и переменные --- */
+:root {
+    --glow-color: rgba(0, 255, 255, 0.6); /* Цвет свечения */
+    --bg-gradient-start: #1a0b2e;
+    --bg-gradient-end: #0e0e23;
+    --text-color: #e0e0ff;
+    --accent-color: #ff3f8f; /* Яркий акцентный цвет */
+    --telegram-blue: #29a9ea;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif; /* Основной шрифт */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(145deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    color: var(--text-color);
+    padding: 15px;
+    overflow: hidden; /* Важно, чтобы "летающие" элементы не создавали прокрутку */
+    position: relative; /* Для позиционирования частиц */
+}
+
+/* --- Сцена и контейнер --- */
+.scene {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* Включаем 3D-перспективу для сцены */
+    position: relative;
+}
+
+.container {
+    background-color: rgba(26, 11, 46, 0.7); /* Полупрозрачный темный фон */
+    backdrop-filter: blur(5px); /* Эффект размытия фона */
+    padding: 30px 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая светлая рамка */
+    box-shadow: 0 0 30px rgba(77, 22, 100, 0.5), 0 0 15px var(--glow-color) inset; /* Тень и внутреннее свечение */
+    text-align: center;
+    max-width: 450px; /* Ограничение ширины для мобильных */
+    width: 100%;
+    position: relative; /* Чтобы дочерние float-item позиционировались относительно */
+    z-index: 10; /* Контейнер над частицами */
+    transform-style: preserve-3d; /* Для 3D трансформаций дочерних элементов */
+}
+
+/* --- Анимация полета --- */
+@keyframes floatAnimation {
+    0%, 100% {
+        transform: translateY(0px) rotateZ(0deg) translateZ(0px);
+        /* text-shadow: 0 0 5px var(--glow-color); */
+    }
+    25% {
+         transform: translateY(-8px) translateX(3px) rotateZ(-1deg) translateZ(10px);
+         /* text-shadow: 0 0 10px var(--glow-color), 0 0 5px var(--glow-color); */
+    }
+    50% {
+        transform: translateY(5px) translateX(0px) rotateZ(0.5deg) translateZ(5px);
+         /* text-shadow: 0 0 7px var(--glow-color); */
+    }
+    75% {
+         transform: translateY(-5px) translateX(-3px) rotateZ(1deg) translateZ(15px);
+         /* text-shadow: 0 0 12px var(--glow-color), 0 0 6px var(--glow-color); */
+    }
+}
+
+.float-item {
+    animation: floatAnimation infinite ease-in-out;
+    animation-duration: var(--duration, 10s); /* Используем переменную из style */
+    animation-delay: var(--delay, 0s);     /* Используем переменную из style */
+    position: relative; /* Чтобы transform работал корректно */
+    margin-bottom: 20px; /* Базовый отступ */
+    transition: text-shadow 0.3s ease; /* Плавный переход для тени (опционально) */
+}
+/* Убираем лишний отступ у последнего элемента */
+.float-item:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Стилизация элементов --- */
+.warning-icon {
+    font-size: 3rem; /* Размер иконки */
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px var(--accent-color); /* Яркая тень для иконки */
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif; /* Футуристичный шрифт для заголовка */
+    color: var(--accent-color); /* Акцентный цвет */
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-size: 1.6rem;
+    text-shadow: 0 0 8px rgba(255, 63, 143, 0.7);
+}
+
+.subtitle {
+    color: #c0c0f0; /* Светлый сиреневый */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.contact-info-wrapper {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-info {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0; /* Убрали отступ у p */
+    color: #b0b0e0;
+}
+
+.telegram-nick {
+    color: var(--telegram-blue); /* Синий цвет для ника */
+    font-weight: 700; /* Жирный */
+    display: inline-block;
+    margin-top: 8px;
+    background-color: rgba(41, 169, 234, 0.15); /* Легкий фон */
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-shadow: 0 0 5px rgba(41, 169, 234, 0.5);
+    font-size: 1rem;
+}
+
+.footer-note {
+    font-size: 0.8rem;
+    color: #9090c0;
+    margin-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+    font-style: italic;
+}
+
+/* --- Кнопка Telegram --- */
+.telegram-button {
+    background: linear-gradient(145deg, var(--telegram-blue), #1c8bc2);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px; /* Круглая кнопка */
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif; /* Тот же футуристичный шрифт */
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 0 5px 15px rgba(41, 169, 234, 0.4), 0 0 10px var(--glow-color) inset;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden; /* Для эффекта при наведении */
+    z-index: 1; /* Чтобы быть над псевдоэлементом */
+}
+
+.telegram-button::before { /* Эффект при наведении */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+.telegram-button:hover {
+    transform: translateY(-4px) scale(1.05) rotateZ(1deg); /* Легкий подъем, увеличение и поворот */
+    box-shadow: 0 8px 20px rgba(41, 169, 234, 0.6), 0 0 15px var(--glow-color) inset;
+    background: linear-gradient(145deg, #3dbaf0, #29a9ea);
+}
+.telegram-button:hover::before {
+    left: 100%;
+}
+
+
+.telegram-button:active {
+    transform: translateY(-1px) scale(1.02) rotateZ(0deg); /* Легкое нажатие */
+    box-shadow: 0 3px 10px rgba(41, 169, 234, 0.5), 0 0 8px var(--glow-color) inset;
+}
+
+.telegram-button svg {
+    width: 20px;
+    height: 20px;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5)); /* Свечение иконки */
+}
+
+
+/* --- Декоративные частицы на фоне --- */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--glow-color);
+    opacity: 0; /* Появятся с анимацией */
+    box-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+    animation: particle-drift 15s infinite linear;
+    z-index: 1; /* Ниже контейнера, но над фоном */
+}
+
+@keyframes particle-drift {
+    from {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0.7;
+    }
+    to {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Разные размеры, позиции и задержки для частиц */
+.particle.p1 { width: 5px; height: 5px; left: 10%; animation-delay: 0s; animation-duration: 12s; }
+.particle.p2 { width: 8px; height: 8px; left: 30%; animation-delay: 2s; animation-duration: 18s; background: var(--accent-color); box-shadow: 0 0 10px var(--accent-color);}
+.particle.p3 { width: 4px; height: 4px; left: 50%; animation-delay: 5s; animation-duration: 10s; }
+.particle.p4 { width: 6px; height: 6px; left: 70%; animation-delay: 8s; animation-duration: 20s; background: #6f42c1; box-shadow: 0 0 10px #6f42c1;}
+.particle.p5 { width: 7px; height: 7px; left: 90%; animation-delay: 10s; animation-duration: 15s; }
+
+
+/* --- Адаптивность для больших экранов --- */
+@media (min-width: 768px) {
+    .container {
+        padding: 40px 50px;
+        max-width: 600px; /* Увеличиваем максимальную ширину */
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    .telegram-button {
+        padding: 16px 32px;
+        font-size: 1.1rem;
+    }
+    .warning-icon {
+        font-size: 4rem;
+    }
+
+    /* Можно сделать анимацию чуть менее интенсивной на больших экранах */
+    @keyframes floatAnimation {
+        0%, 100% { transform: translateY(0px) rotateZ(0deg) translateZ(0px); }
+        25% { transform: translateY(-6px) translateX(2px) rotateZ(-0.5deg) translateZ(5px); }
+        50% { transform: translateY(4px) translateX(0px) rotateZ(0.2deg) translateZ(2px); }
+        75% { transform: translateY(-4px) translateX(-2px) rotateZ(0.5deg) translateZ(8px); }
+    }
+}
